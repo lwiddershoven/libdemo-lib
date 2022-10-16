@@ -1,16 +1,12 @@
 package org.example.libdemo.lib.service;
 
-import domain.CatFact;
+import org.example.libdemo.lib.domain.CatFact;
 import org.example.libdemo.lib.api.v1.Breed;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
-/**
- * Read ImportantData from ... , or Send ImportantData to.
- */
-// @Component
 public class CatFactService {
     public final static String DEFAULT_HOST = "https://catfact.ninja";
 
