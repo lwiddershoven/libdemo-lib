@@ -2,15 +2,14 @@ package org.example.libdemo.lib.service;
 
 import domain.CatFact;
 import org.example.libdemo.lib.api.v1.Breed;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
-/**
- * Read ImportantData from ... , or Send ImportantData to.
- */
-// @Component
+@Component
 public class CatFactService {
     public final static String DEFAULT_HOST = "https://catfact.ninja";
 
@@ -18,14 +17,12 @@ public class CatFactService {
     public final static String FACTS_PATH = "/facts";
     public final static String BREEDS_PATH = "/breeds";
 
-    private final WebClient webClient;
-
-    public CatFactService(WebClient webClient) {
-        this.webClient = webClient;
-    }
+    @Value("${catfact-service.base-url}")
+    private String baseUrl;
 
     public CatFact getDefaultFact(){
-        return webClient.get()
+        return WebClient.create(baseUrl)
+                .get()
                 .uri(RANDOM_FACT_PATH)
                 .retrieve()
                 .onStatus(HttpStatus::is5xxServerError, r -> { throw new IllegalStateException("Status " + r.statusCode());} )
