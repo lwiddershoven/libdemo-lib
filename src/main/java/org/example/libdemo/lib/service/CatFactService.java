@@ -1,7 +1,7 @@
 package org.example.libdemo.lib.service;
 
-import org.example.libdemo.lib.domain.CatFact;
 import org.example.libdemo.lib.api.v1.Breed;
+import org.example.libdemo.lib.domain.CatFact;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.WebClient;
 
